@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    triggers {
-        pollSCM('H/5 * * * *')
-    }
-
     stages {
 
         stage('Checkout') {
@@ -15,22 +11,14 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh './mvnw clean install'
+                sh 'mvn clean install'
             }
         }
 
         stage('Test') {
             steps {
-                sh './mvnw test'
+                sh 'mvn test'
             }
-        }
-    }
-
-    post {
-        failure {
-            mail to: 'srengty@gmail.com',
-            subject: "Build Failed",
-            body: "Check Jenkins logs"
         }
     }
 }
