@@ -12,7 +12,8 @@ pipeline {
         stage('Build') {
             steps {
                 dir('demo') {
-                    sh 'mvn clean install'
+                    sh 'chmod +x mvnw'
+                    sh './mvnw clean install'
                 }
             }
         }
@@ -20,7 +21,7 @@ pipeline {
         stage('Test') {
             steps {
                 dir('demo') {
-                    sh 'mvn test'
+                    sh './mvnw test'
                 }
             }
         }
