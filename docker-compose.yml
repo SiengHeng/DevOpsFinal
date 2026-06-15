@@ -18,10 +18,21 @@ services:
     environment:
       - MYSQL_DATABASE=KEO_SIENGHENG-db
       - MYSQL_ROOT_PASSWORD=Hello@123
-    ports:
-      - "3306:3306"
     volumes:
       - db_data:/var/lib/mysql
+
+  loadbalancer:
+    build: ./webserver
+    ports:
+      - "8090:80"
+      - "2223:22"
+    depends_on:
+      - db
+      - webserver
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/KEO_SIENGHENG-db
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=Hello@123
 
 volumes:
   db_data:
