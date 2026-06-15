@@ -11,18 +11,14 @@ pipeline {
 
         stage('Build') {
             steps {
-                dir('demo') {
-                    sh 'chmod +x mvnw'
-                    sh './mvnw clean install'
-                }
+                sh 'chmod +x gradlew'
+                sh './gradlew build'
             }
         }
 
         stage('Test') {
             steps {
-                dir('demo') {
-                    sh './mvnw test'
-                }
+                sh './gradlew test'
             }
         }
     }
