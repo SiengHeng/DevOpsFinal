@@ -1,0 +1,1 @@
+Error: Could not access MySQL container. This may be because the container is not running or Docker is not accessible in this environment.
